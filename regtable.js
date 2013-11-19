@@ -5,8 +5,13 @@
  * this system with access to global options.
  */
 require('./lib/baum.js');
+CONFIG = $.config.createConfig('./config/');
 
-var IPCServer = $.ipc.createServer('/tmp/loesung-regtable');
+var socketPath = CONFIG.get('socket-path');
+
+var IPCServer = $.ipc.createServer(socketPath);
+console.log('IPC Server created at: ' + socketPath);
+
 IPCServer.on('data', function(e){
     e.response.setHeader('content-type', 'text/html');
     e.response.writeHead(200);
