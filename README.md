@@ -1,7 +1,7 @@
 Regtable
 ========
 
-Configuration management server of the whole kernel system.
+Configuration management server of a whole system.
 
 This is a server, provides general data of options that other parts of this
 system should know and exchange. Such options are not time-critical, but
