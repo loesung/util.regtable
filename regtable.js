@@ -9,7 +9,7 @@ CONFIG = $.config.createConfig('./config/');
 
 var socketPath = CONFIG.get('socket-path');
 
-var IPCServer = $.ipc.createServer(socketPath);
+var IPCServer = $.net.IPC.server(socketPath);
 console.log('IPC Server created at: ' + socketPath);
 
 IPCServer.on('data', function(e){
