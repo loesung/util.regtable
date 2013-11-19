@@ -2,12 +2,13 @@ var http = require('http');
 
 var request = http.request(
     {
-        socketPath: '/home/lucifer/testSocket',
+        socketPath: '/tmp/loesung-regtable',
         auth: 'user:password',
     },
     function(response){
+        console.log(response.headers);
         response.on('data', function(chunk){
-            console.log(chunk);
+            console.log(chunk.toString('ascii'));
         });
     }
 );
