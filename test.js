@@ -1,21 +1,17 @@
-var http = require('http');
+require('./lib/baum.js');
+CONFIG = $.config.createConfig('./config/');
+var socketPath = CONFIG.get('socket-path');
 
-var request = http.request(
-    {
-        socketPath: '/tmp/loesung-regtable',
-        auth: 'user:password',
-    },
-    function(response){
-        console.log(response.headers);
-        response.on('data', function(chunk){
-            console.log(chunk.toString('ascii'));
-        });
+var IPCClient = $.net.IPC.client(socketPath);
+
+IPCClient.request(
+    '/',    
+    function(err, e){
+        if(null == err){
+            console.log(e.response.headers);
+            e.on('ready', function(data){
+                console.log(data);
+            });
+        };
     }
 );
-
-request.on('error', function(e){
-    console.log('ERR',e);
-});
-
-request.write('data');
-request.end();
