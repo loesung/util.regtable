@@ -16,6 +16,7 @@ IPCServer.on('data', function(e){
     e.response.setHeader('content-type', 'text/html');
     e.response.writeHead(200);
     e.response.write('hello');
+    e.response.write($.nodejs.url.format(e.url));
     e.end('Here is Regtable from Project Loesung.');
 });
 
